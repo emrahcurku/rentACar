@@ -23,7 +23,6 @@ public class BrandsController {
 	
 	@GetMapping("/getall")
 	public List<Brand> getAll(){
-		//http://localhost:8080/swagger-ui/index.html
 		return brandService.getAll();
 	}
 	
