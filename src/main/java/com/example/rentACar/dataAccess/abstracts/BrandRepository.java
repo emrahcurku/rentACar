@@ -1,12 +1,12 @@
 package com.example.rentACar.dataAccess.abstracts;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.rentACar.entities.concretes.Brand;
 
 
-public interface BrandRepository {
+public interface BrandRepository extends JpaRepository<Brand, Integer>{
 	
-	List<Brand> getAll();
+	
 
 }
