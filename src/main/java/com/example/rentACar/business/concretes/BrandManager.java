@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.rentACar.business.abstracts.BrandService;
 import com.example.rentACar.business.requests.CreateBrandRequest;
+import com.example.rentACar.business.requests.UpdateBrandRequest;
 import com.example.rentACar.business.responses.GetAllBrandsResponse;
+import com.example.rentACar.business.responses.GetByIdBrandResponse;
 import com.example.rentACar.core.utilities.mappers.ModelMapperService;
 import com.example.rentACar.dataAccess.abstracts.BrandRepository;
 import com.example.rentACar.entities.concretes.Brand;
@@ -62,8 +64,28 @@ public class BrandManager implements BrandService{
 		Brand brand = this.modelMapperService.forRequest()
 				          .map(createBrandRequest, Brand.class);
 		
-		this.brandRepository.save(brand);
-		
+		this.brandRepository.save(brand);		
 	}
 
+	@Override
+	public GetByIdBrandResponse getById(int id) {
+		Brand brand = this.brandRepository.findById(id).orElseThrow();
+		
+		GetByIdBrandResponse getByIdBrandResponse = this.modelMapperService
+		.forResponse().map(brand, GetByIdBrandResponse.class);
+		return getByIdBrandResponse;
+	}
+
+	@Override
+	public void update(UpdateBrandRequest updateBrandRequest) {
+		Brand brand = this.modelMapperService.forRequest()
+		          .map(updateBrandRequest, Brand.class);
+
+         this.brandRepository.save(brand);		
+	}
+
+	@Override
+	public void delete(int id) {
+		this.brandRepository.deleteById(id);		
+	}
 }
