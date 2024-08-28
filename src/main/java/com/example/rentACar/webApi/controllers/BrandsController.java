@@ -31,7 +31,7 @@ public class BrandsController {
 
 //	@Autowired
 //	public BrandsController(BrandService brandService) {
-//		this.brandService = brandService;
+//		this.brandService = brandService; 
 //	}
 	
 	@GetMapping()

@@ -1,10 +1,8 @@
 package com.example.rentACar.business.concretes;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.modelmapper.internal.bytebuddy.asm.Advice.This;
 import org.springframework.stereotype.Service;
 
 import com.example.rentACar.business.abstracts.BrandService;
@@ -12,6 +10,7 @@ import com.example.rentACar.business.requests.CreateBrandRequest;
 import com.example.rentACar.business.requests.UpdateBrandRequest;
 import com.example.rentACar.business.responses.GetAllBrandsResponse;
 import com.example.rentACar.business.responses.GetByIdBrandResponse;
+import com.example.rentACar.business.rules.BrandBusinessRules;
 import com.example.rentACar.core.utilities.mappers.ModelMapperService;
 import com.example.rentACar.dataAccess.abstracts.BrandRepository;
 import com.example.rentACar.entities.concretes.Brand;
@@ -26,6 +25,7 @@ public class BrandManager implements BrandService{
 
 	private BrandRepository brandRepository;
 	private ModelMapperService modelMapperService;
+	private BrandBusinessRules brandBusinessRules;
 	
 	//@AllArgsConstructor annotasyonunu eklersek aşağıdaki gibi
 	//Constructorı oluşturmamıza gerek yoktur

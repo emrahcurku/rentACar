@@ -8,5 +8,5 @@ import com.example.rentACar.entities.concretes.Brand;
 //jpa repositoryi extend ettiğimiz için spring bunun bir repository olduğunu anlar.
 public interface BrandRepository extends JpaRepository<Brand, Integer>{
 	
-	
+	boolean existsByName(String name); //spring jpa keywords
 }
