@@ -19,6 +19,7 @@ import com.example.rentACar.business.requests.UpdateBrandRequest;
 import com.example.rentACar.business.responses.GetAllBrandsResponse;
 import com.example.rentACar.business.responses.GetByIdBrandResponse;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 
@@ -46,9 +47,10 @@ public class BrandsController {
 	
 	/*Spring'in yeni versiyonlarında birçok annotasyon otomatik olarak gelir.
 	  Örneğin @RequestBody annotasyonunu kullanmasak da swagger de post işlemi yapabiliriz */
+	//Requestte girmiş olduğumuz min size =3'ün çalışması için @Valid annatasyonu kullanılır.
 	@PostMapping()
 	@ResponseStatus(code=HttpStatus.CREATED)
-	public void add(@RequestBody CreateBrandRequest createBrandRequest){
+	public void add(@RequestBody @Valid CreateBrandRequest createBrandRequest){
 		this.brandService.add(createBrandRequest);
 	}
 	
@@ -57,8 +59,4 @@ public class BrandsController {
 		this.brandService.update(updateBrandRequest);
 	}
 	
-	@DeleteMapping("/{id}")
-	public void delete(@PathVariable int id) {
-		this.brandService.delete(id);
-	}
 }

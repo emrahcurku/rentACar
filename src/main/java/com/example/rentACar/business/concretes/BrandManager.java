@@ -62,28 +62,28 @@ public class BrandManager implements BrandService{
 //		brand.setName(createBrandRequest.getName());
 		
 		this.brandBusinessRules.checkIfBrandNameExists(createBrandRequest.getName());
-		
-		Brand brand = this.modelMapperService.forRequest()
-				          .map(createBrandRequest, Brand.class);
-		
-		this.brandRepository.save(brand);		
+
+		Brand brand = this.modelMapperService.forRequest().map(createBrandRequest, Brand.class);
+
+		this.brandRepository.save(brand);	
 	}
 
 	@Override
 	public GetByIdBrandResponse getById(int id) {
-		Brand brand = this.brandRepository.findById(id).orElseThrow();
 		
-		GetByIdBrandResponse getByIdBrandResponse = this.modelMapperService
-		.forResponse().map(brand, GetByIdBrandResponse.class);
+		Brand brand = this.brandRepository.findById(id).orElseThrow();
+
+		GetByIdBrandResponse getByIdBrandResponse = this.modelMapperService.forResponse()
+				.map(brand, GetByIdBrandResponse.class);
+		
 		return getByIdBrandResponse;
 	}
 
 	@Override
 	public void update(UpdateBrandRequest updateBrandRequest) {
-		Brand brand = this.modelMapperService.forRequest()
-		          .map(updateBrandRequest, Brand.class);
+		Brand brand = this.modelMapperService.forRequest().map(updateBrandRequest, Brand.class);
 
-         this.brandRepository.save(brand);		
+		this.brandRepository.save(brand);	
 	}
 
 	@Override
